@@ -1,0 +1,79 @@
+@import "variables";
+ion-content {
+  margin-bottom: 20%;
+}
+
+[text-bold] {
+  font-weight: bold;
+}
+
+[text-normal] {
+  font-weight: normal;
+}
+
+[text-capitalize] {
+  text-transform: capitalize;
+}
+
+[text-nowrap] {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[regular-case] {
+  text-transform: none;
+}
+
+[line-row] {
+  border-bottom: 1px solid #dedede;
+  padding: 2px 5px;
+}
+
+[detail-row] {
+  background-color: #F9FAFB;
+  padding: 2px 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+[header-row] {
+  background: #F79232;
+  padding: 5px;
+  color: #FFFFFF;
+}
+
+[subtotal-row] {
+  background-color: #F9FAFB;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0px;
+}
+
+[total-row] {
+  padding: 5px;
+  border-radius: 0px;
+  text-align: center;
+}
+
+[bg-secondary] {
+  background-color: #32db64;
+}
+
+
+[bg-login] { 
+  background: url('../assets/images/login_background_5.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+[bg-login-color] {
+    background-color: #f6f6f6;
+}
+
+
+

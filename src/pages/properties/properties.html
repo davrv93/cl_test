@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="kastor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{page.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <image-header-page></image-header-page>
+  <!-- error message -->
+  <ion-card *ngIf="isEmptyObject(properties)" padding>
+    <ion-grid style="margin-top: 5px;">
+      <ion-row center>
+        <ion-col>
+          <ion-avatar>
+            <img src="assets/images/warning-icon.png" style="width: 15%; display: block; margin-left: auto; margin-right: auto;">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card-content>
+      <ion-grid style="margin-top: 5px;">
+        <ion-row center>
+          <ion-col>
+            <h4 style="text-align: center;">No se han encontrado inmuebles asociados a tu cuenta</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let p of properties" (click)="viewPropertyDetails(p)">
+    <ion-item>
+      <img [src]="p.image" style="width: 20%; padding-right: 15px;" item-left>
+      <h2><b>Inmueble:</b> {{p.inmueble.nombreInmueble}}</h2>
+      <hr />
+      <p text-capitalize><b>Comunidad:</b> {{p.comunidad && p.comunidad.nombreComunidad}} <span *ngIf="!p.comunidad">...</span></p>
+      <p text-capitalize><b>Usuario:</b> {{p.usuario && p.usuario.nombre}} {{p.usuario && p.usuario.apellidoPaterno}} {{p.usuario && p.usuario.apellidoMaterno}} </p>
+      <p text-capitalize><b>Rol:</b> {{ rolesMap && rolesMap[p.roleId].name }} <span *ngIf="!rolesMap">...</span></p>
+      <p text-capitalize><b>Administración:</b> {{p.comunidad && p.comunidad.nombreAdministrador}} <span *ngIf="!p.comunidad">...</span></p>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col center text-right>
+        <button ion-button icon-left clear small color="kastor">
+        <ion-icon ios="ios-list" md="md-list"></ion-icon>
+        <div>Ver Detalle</div>
+      </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>

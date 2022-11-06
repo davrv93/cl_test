@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="kastor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{page.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <image-header-page></image-header-page>
+  <ion-card *ngIf="profileModel.picture">
+    <ion-avatar>
+      <img [src]="profileModel.picture" style="width: 30%; display: block; margin-left: auto; margin-right: auto; padding-top: 10px;"
+      />
+    </ion-avatar>
+    <ion-card-content>
+      <ion-card-title style="text-align: center;">
+        {{profileModel.name}} {{profileModel.lastName}} {{profileModel.motherLastName}}
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Mis Datos
+    </ion-card-header>
+    <ion-card-content>
+
+    </ion-card-content>
+    <ion-list>
+      <button ion-item>
+                <ion-icon name="mail" item-left color="dark"></ion-icon>
+                <a class="plainText" style="font-size: 90%;" ion-text color="kastor" href="mailto:{{profileModel.email}}">{{profileModel.email}}</a>
+            </button>
+      <!--button ion-item>
+                <ion-icon name="call" item-left></ion-icon>
+                <a class="plainText" href="tel:+923008203588">+923008203588</a>
+            </button-->
+      <button ion-item (tap)="openEditProfile()">
+                <ion-icon name="create" item-left color="dark"></ion-icon>
+                <a class="plainText" style="font-size: 90%;" ion-text color="kastor">{{pages[3].title}}</a>
+            </button>
+    </ion-list>
+  </ion-card>
+
+  <div padding>
+    <button ion-button full icon-left (tap)="openPage(pages[1])"><ion-icon name="home"></ion-icon> {{pages[1].title}}</button>
+    <!--button ion-button full icon-left color="primary" (click)="openPage(pages[2])"><ion-icon ios="md-clipboard" md="md-clipboard" ></ion-icon> {{pages[2].title}}</button-->
+  </div>
+</ion-content>

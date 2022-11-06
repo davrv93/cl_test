@@ -7,6 +7,19 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'properties',
+    loadChildren: () => import('../pages/properties/properties.module').then( m => m.PropertiesModule)
+  },
+  {
+    path: 'property-detail',
+    loadChildren: () => import('../pages/property-detail/property-detail.module').then( m => m.PropertyDetailModule)
+  },
+  {
+    path:'checkout-debt',
+    loadChildren: () => import('../pages/checkout-debt/checkout-debt.module').then( m => m.CheckoutDebtModule)
+
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

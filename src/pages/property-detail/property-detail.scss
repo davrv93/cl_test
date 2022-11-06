@@ -1,0 +1,35 @@
+page-property-detail {
+  
+@import "ionic.globals";
+
+  ion-row.unidades  {
+    background-color: color($colors, kastor2);
+    color: color($colors, light);
+    padding: 2px 5px;
+    border: 0px solid #ddd;
+    border-radius: 0px;
+    text-align: center;
+  }
+
+  ion-row.instalaciones  {
+    background-color: color($colors, danger);
+    color: color($colors, light);
+    padding: 5px;
+    border: 0px solid #ddd;
+    border-radius: 3px;
+    text-align: center;
+  }
+
+  ion-row.unidades-detail  {
+    background-color: #F9FAFB;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px; 
+  }
+
+
+  ion-col.unidades-detail  {
+    text-align: right;
+  }
+
+}

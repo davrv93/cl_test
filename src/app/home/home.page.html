@@ -1,20 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+test
+<ion-menu side="start"  contentId="menuContent">
+  <ion-header>
+    <ion-toolbar color="kastor">
+      <ion-title></ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+
+
+<ion-content [fullscreen]="true" >
+  <ion-grid style="margin-top: 10px; margin-bottom: 5px;">
+    <ion-row center>
+      <ion-col>
+        <img src="assets/images/logo_tcel.png" style="width: 80%; display: block; margin-left: auto; margin-right: auto;">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" type="button">
+      <ion-icon name="{{p.icon}}" item-left></ion-icon>
+      <p>{{p.title}}</p>
+    </button>
+    <button menuClose ion-item (click)="logout()" type="button">
+      <ion-icon name="ios-exit-outline" item-left></ion-icon>
+      <p>Salir</p>
+    </button>
+  </ion-list>
 </ion-content>
+
+
+</ion-menu>
+
+<page-login></page-login>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+ 

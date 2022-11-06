@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="kastor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{page.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <image-header-page></image-header-page>
+  <ion-item *ngIf="properties">
+    <ion-label>Inmueble</ion-label>
+    <ion-select cancelText="CANCELAR" placeholder="Seleccionar" okText="SELECCIONAR" [(ngModel)]="summaryRequest.inmueble" multiple="false" [selectOptions]="selectOptions">
+      <ion-option *ngFor="let p of properties" [value]="p">
+        {{p.inmueble.nombreInmueble}} - Comunidad: {{p.comunidad && p.comunidad.nombreComunidad}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Desde:</ion-label>
+    <ion-datetime displayFormat="DDDD, DD MMMM YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="summaryRequest.dateFrom"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Hasta:</ion-label>
+    <ion-datetime displayFormat="DDDD, DD MMMM YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="summaryRequest.dateTo"></ion-datetime>
+  </ion-item>
+  <br />
+
+  <div padding>
+    <button ion-button full icon-left (tap)="presentModal(pages[0].component)"><ion-icon name="search"></ion-icon> {{pages[0].title}}</button>
+    <br />
+    <button ion-button full icon-left (tap)="presentModal(pages[1].component)"><ion-icon name="search"></ion-icon> {{pages[1].title}}</button>
+  </div>
+
+
+
+</ion-content>

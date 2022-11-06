@@ -1,0 +1,36 @@
+
+<ion-content padding bg-login-color>
+    <ion-grid style="margin-top: 30%;">
+        <ion-row center>
+            <ion-col>
+                <img src="assets/images/logo_tcel.png" style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
+                <!--img src="assets/images/line-png-32.png" style="width: 100%;"-->
+                <br />
+                <hr style="height: 2px;" />
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <form [formGroup]="loginForm">
+        <ion-list inset>
+            <ion-item style="background-color: transparent;">
+                <ion-input type="email" formControlName="email" placeholder="usuario@dominio.com" [(ngModel)]="credentials.email" transparent style="padding-left: 5px;"></ion-input>
+            </ion-item>
+            <ion-item style="background-color: transparent;">
+                <ion-input type="password" formControlName="password" placeholder="Password" transparent style="padding-left: 5px;">
+                </ion-input>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button ion-button full color="kastor" icon-left type="submit" [disabled]="!loginForm.valid" (click)="localLogin()"><ion-icon name="lock"></ion-icon> ENTRAR</button>
+            <!--button ion-button full color="danger" icon-left (click)="googleLogin()"><ion-icon ios="logo-google" md="logo-google"></ion-icon>  ENTRAR CON GOOGLE</button-->
+        </div>
+        <ion-list inset no-lines>
+            <ion-item style="background-color: transparent;">
+                <button ion-button item-right (tap)="openResetPassword()" color="kastor2" type="button">Restablecer Contraseña</button>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>
+<!--<div footer>
+    <img src="assets/images/login_background_ciudad.png" style="position: absolute; left: 0; bottom: 0; width: 120%; height:200px;">
+</div>-->

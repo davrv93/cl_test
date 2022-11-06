@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar color="kastor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{page.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <image-header-page></image-header-page>
+  <!--succes message-->
+  <ion-card [hidden]="!showConfirmation">
+    <ion-grid style="margin-top: 5px;">
+      <ion-row center>
+        <ion-col>
+          <ion-avatar>
+            <img src="assets/images/success-icon.png" style="width: 20%; display: block; margin-left: auto; margin-right: auto;">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card-content>
+      <ion-grid style="margin-top: 5px;">
+        <ion-row center>
+          <ion-col>
+            <h4 style="text-align: center;">Hemos actualizado tus datos exitosamente!</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <!-- error message -->
+  <ion-card [hidden]="!errorMessage.showMessage">
+    <ion-grid style="margin-top: 5px;">
+      <ion-row center>
+        <ion-col>
+          <ion-avatar>
+            <img [src]="errorMessage.icon" style="width: 20%; display: block; margin-left: auto; margin-right: auto;">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card-content>
+      <ion-grid style="margin-top: 5px;">
+        <ion-row center>
+          <ion-col>
+            <h4 style="text-align: center;">{{errorMessage.message}}</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <form [formGroup]="editProfileForm">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Email:</ion-label>
+        <ion-input type="email" formControlName="email" placeholder="usuario@dominio.com" [(ngModel)]="profileModel.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nombre:</ion-label>
+        <ion-input type="text" formControlName="name" placeholder="" [(ngModel)]="profileModel.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Apellido Paterno:</ion-label>
+        <ion-input type="text" formControlName="lastName" placeholder="" [(ngModel)]="profileModel.lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Apellido Materno:</ion-label>
+        <ion-input type="text" formControlName="motherLastName" placeholder="" [(ngModel)]="profileModel.motherLastName"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button full icon-left type="button" (click)="editProfile()" [disabled]="!editProfileForm.valid"><ion-icon name="create"></ion-icon>Editar</button>
+      <br />
+      <button (tap)="confirmResetPassword()" ion-button full clear color="kastor" icon-left>
+                <ion-icon name="lock" item-left></ion-icon>
+                <a class="plainText" ion-text color="kastor">Restablecer contraseña</a>
+      </button>
+    </div>
+
+  </form>
+
+</ion-content>

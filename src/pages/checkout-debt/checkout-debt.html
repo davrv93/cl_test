@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="kastor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{page.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <image-header-page></image-header-page>
+  <ion-grid>
+    <ion-row header-row>
+      <ion-col col-6 text-bold>Concepto</ion-col>
+      <ion-col col-3 text-right text-bold>Monto</ion-col>
+      <ion-col col-3 text-right text-bold>Saldo</ion-col>
+    </ion-row>
+    <ion-row center line-row *ngFor="let debt of debts">
+      <ion-col col-1 text-center>
+        <ion-checkbox (click)="updateDebt(debt)" [(ngModel)]="debt.checked"></ion-checkbox>
+      </ion-col>
+      <ion-col col-5>{{debt.descripcion}}</ion-col>
+      <ion-col col-3 text-right>
+        {{debt.deuda | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ '}}
+      </ion-col>
+      <ion-col col-3 text-right>
+        {{debt.saldo | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }}
+      </ion-col>
+    </ion-row>
+    <ion-row subtotal-row>
+      <ion-col col-8 text-right text-bold>Subtotal de deudas</ion-col>
+      <ion-col col-4 text-right text-bold>
+        <span>{{checkout.amount | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row subtotal-row>
+      <ion-col col-8 text-right text-bold>Saldo a favor</ion-col>
+      <ion-col col-4 text-right text-bold>
+        <span>{{checkout.credit | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row subtotal-row>
+      <ion-col col-8 text-right text-bold>Subtotal</ion-col>
+      <ion-col col-4 text-right text-bold>
+        <span>{{checkout.subtotal | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row subtotal-row>
+      <ion-col col-8 text-right text-bold>Cargo por servicio Khipu</ion-col>
+      <ion-col col-4 text-right text-bold>
+        <span>{{checkout.fee | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row total-row>
+      <ion-col col-8 text-right text-bold>TOTAL A PAGAR</ion-col>
+      <ion-col col-4 text-right text-bold>
+        <span>{{checkout.total | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div padding>
+    <button ion-button icon-left full text-bold regular-case (click)="payWithKhipu()" [disabled]="checkout.total == 0">
+      <ion-icon name="send"></ion-icon>
+      Pagar con Khipu
+    </button>
+  </div>
+</ion-content>

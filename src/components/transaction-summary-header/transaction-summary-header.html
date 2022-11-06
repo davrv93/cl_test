@@ -1,0 +1,18 @@
+<ion-item>
+  <ion-icon ios="ios-home" md="ios-home" small item-left></ion-icon>
+  <p ion-text>Inmueble:</p>
+  {{ summaryRequest && summaryRequest.inmueble.inmueble.nombreInmueble}}
+</ion-item>
+<ion-item>
+  <ion-icon ios="ios-home-outline" md="ios-home-outline" small item-left></ion-icon>
+  <p ion-text>Comunidad:</p>
+  {{ summaryRequest && summaryRequest.inmueble.comunidad.nombreComunidad}}
+</ion-item>
+<ion-item>
+  <ion-icon ios="ios-calendar" md="ios-calendar" small item-left></ion-icon>
+  <p ion-text>Fecha desde:</p> {{ summaryRequest && summaryRequest.dateFrom | amDateFormat:'DD/MM/YYYY'}}
+</ion-item>
+<ion-item>
+  <ion-icon ios="ios-calendar-outline" md="ios-calendar-outline" small item-left></ion-icon>
+  <p ion-text>Fecha hasta:</p> {{ summaryRequest && summaryRequest.dateTo | amDateFormat:'DD/MM/YYYY'}}
+</ion-item>

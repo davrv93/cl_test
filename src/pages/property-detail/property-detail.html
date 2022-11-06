@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="kastor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{page.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <br />
+  <ion-card>
+    <ion-card-content>
+      <ion-item line-row>
+        <ion-icon ios="md-home" md="md-home" small item-left></ion-icon>Inmueble
+        <p text-right text-capitalize *ngIf="!isEmptyObject(propertyParam)">{{propertyParam?.inmueble?.nombreInmueble}} </p>
+      </ion-item>
+      <ion-item line-row>
+        <ion-icon name="person" small item-left></ion-icon> Usuario
+        <p text-right text-capitalize *ngIf="!isEmptyObject(usuarioInmueble)">{{usuarioInmueble && usuarioInmueble[0] && usuarioInmueble[0]?.nombre}} {{usuarioInmueble && usuarioInmueble[0] && usuarioInmueble[0]?.apellidoPaterno}} {{usuarioInmueble && usuarioInmueble[0] &&
+          usuarioInmueble[0]?.apellidoMaterno}} <span *ngIf="!usuarioInmueble">...</span></p>
+      </ion-item>
+      <ion-item line-row>
+        <ion-icon name="calendar" small item-left></ion-icon> Fecha último Pago
+        <p text-right *ngIf="!isEmptyObject(ultimoPagoInmueble)">{{ultimoPagoInmueble && ultimoPagoInmueble[0].fecha_pago | amDateFormat:'DD/MM/YYYY'}} <span *ngIf="!ultimoPagoInmueble">...</span></p>
+      </ion-item>
+      <ion-item line-row>
+        <ion-icon name="card" small item-left></ion-icon> Monto último Pago
+        <p text-right *ngIf="!isEmptyObject(ultimoPagoInmueble)">{{ ultimoPagoInmueble && ultimoPagoInmueble[0].monto_pago | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:'CLP':'$'
+          }} <span *ngIf="!ultimoPagoInmueble">...</span></p>
+      </ion-item>
+      <ion-item line-row>
+        <ion-icon name="copy" small item-left></ion-icon> Folio último Pago
+        <p text-right *ngIf="!isEmptyObject(ultimoPagoInmueble)">{{ ultimoPagoInmueble && ultimoPagoInmueble[0].folio_pago }} <span *ngIf="!ultimoPagoInmueble">...</span></p>
+      </ion-item>
+      <!-- totales -->
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+          </ion-col>
+        </ion-row>
+        <ion-row center>
+          <ion-col>
+            <b>TOTAL A PAGAR: <br /></b>
+          </ion-col>
+          <ion-col text-right text-bold>
+            <b *ngIf="!isEmptyObject(deudaInmueble)">{{ deudaInmueble && sumaDeudaInmueble | currency:'CLP':true | currencyFormat:',':'.' | currencyFormat:',':'.' | currencyFormat:'CLP':'$ ' }} <span *ngIf="(!deudaInmueble) && (!sumaDeudaInmueble)">...</span></b>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <div padding>
+    <button ion-button full *ngIf="( (paymentMethodConfig && paymentMethodConfig[0].khipu.estado == 1) || (paymentMethodConfig && paymentMethodConfig[0].transbank.estado == 1) )"
+      icon-left type="submit" (click)="payDebt()" [disabled]="(deudaInmueble && (sumaDeudaInmueble == 0))"><ion-icon name="card"></ion-icon> PAGAR DEUDA</button>
+  </div>
+</ion-content>
